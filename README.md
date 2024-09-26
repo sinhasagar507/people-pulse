@@ -60,3 +60,7 @@ The dataset contains comprehensive employee records, including details such as:
 ## Technologies Used
 
 - **Tableau**: For building visualizations and interactive dashboards.
+
+## Acknowledgement
+
+This project is inspired by the techniques and ideas presented in the following online resource: [YouTube](https://www.youtube.com/watch?v=UcGF09Awm4Y&t=3613s).
