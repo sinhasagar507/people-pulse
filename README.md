@@ -39,9 +39,9 @@ Demographics:
 
 ![Gender Ratio]
 <p align="center">
-  <img src="images/employee_gender.png.png" alt="Overview" width="30%">
-  <img src="images/employee_men.png.png" alt="Insights" width="30%">
-  <img src="images/employee_women.png.png" alt="Demographics" width="30%">
+  <img src="images/employee_gender.png" alt="Overview" width="30%">
+  <img src="images/employee_men.png" alt="Insights" width="30%">
+  <img src="images/employee_women.png" alt="Demographics" width="30%">
 </p>
 
 
