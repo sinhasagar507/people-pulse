@@ -345,9 +345,6 @@
       <column aggregation='Sum' caption='Length of Hire' datatype='integer' name='[Calculation_5908722719064481793]' role='dimension' type='ordinal'>
         <calculation class='tableau' formula='IF ISNULL([Termdate])&#10;THEN DATEDIFF(&apos;year&apos;, [Hiredate], TODAY())&#10;ELSE DATEDIFF(&apos;year&apos;, [Hiredate], [Termdate])&#10;END' />
       </column>
-      <column caption='Year of Termdate' datatype='integer' name='[Calculation_6211800916414685184]' role='measure' type='quantitative'>
-        <calculation class='tableau' formula='YEAR([Termdate])' />
-      </column>
       <column caption='Status' datatype='string' name='[Calculation_6519523476982894592]' role='dimension' type='nominal'>
         <calculation class='tableau' formula='IF &#10;ISNULL([Termdate]) THEN &apos;Hired&apos; &#10;ELSE &apos;Terminated&apos; &#10;END' />
       </column>
@@ -378,6 +375,7 @@
         </calculation>
       </column>
       <column datatype='string' name='[State]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+      <column datatype='date' name='[Termdate]' role='dimension' type='ordinal' />
       <_.fcp.ObjectModelTableType.true...column caption='HumanResources.csv' datatype='table' name='[__tableau_internal_object_id__].[HumanResources.csv_CAAB8BCA92C44243BC48CD0DAA937C72]' role='measure' type='quantitative' />
       <column-instance column='[Calculation_583708796804218885]' derivation='None' name='[none:Calculation_583708796804218885:nk]' pivot='key' type='nominal' />
       <column-instance column='[Calculation_6519523476982894592]' derivation='None' name='[none:Calculation_6519523476982894592:nk]' pivot='key' type='nominal' />
@@ -430,6 +428,7 @@
         <table-calc ordering-type='Columns' />
         <table-calc field='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Calculation1]' ordering-type='Columns' />
       </column-instance>
+      <column-instance column='[Termdate]' derivation='Year' name='[yr:Termdate:ok]' pivot='key' type='ordinal' />
       <group caption='Action (Age Groups )' hidden='true' name='[Action (Age Groups )]' name-style='unqualified' user:auto-column='sheet_link'>
         <groupfilter function='crossjoin'>
           <groupfilter function='level-members' level='[Calculation_4364691791713832960]' />
@@ -462,6 +461,14 @@
           <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
           <groupfilter function='level-members' level='[City]' />
           <groupfilter function='level-members' level='[State]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (Location ,City,State,YEAR(Termdate))' hidden='true' name='[Action (Location ,City,State,YEAR(Termdate))]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
+          <groupfilter function='level-members' level='[City]' />
+          <groupfilter function='level-members' level='[State]' />
+          <groupfilter function='level-members' level='[yr:Termdate:ok]' />
         </groupfilter>
       </group>
       <group caption='Action (Status,Department)' hidden='true' name='[Action (Status,Department)]' name-style='unqualified' user:auto-column='sheet_link'>
@@ -497,6 +504,14 @@
           <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
           <groupfilter function='level-members' level='[City]' />
           <groupfilter function='level-members' level='[State]' />
+        </groupfilter>
+      </group>
+      <group caption='Tooltip (Location ,City,State,YEAR(Termdate))' hidden='true' name='[Tooltip (Location ,City,State,YEAR(Termdate))]' name-style='unqualified' user:auto-column='sheet_link' user:ui-vit-column='true'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
+          <groupfilter function='level-members' level='[City]' />
+          <groupfilter function='level-members' level='[State]' />
+          <groupfilter function='level-members' level='[yr:Termdate:ok]' />
         </groupfilter>
       </group>
       <group caption='Tooltip (State)' hidden='true' name='[Tooltip (State)]' name-style='unqualified' user:auto-column='sheet_link' user:ui-vit-column='true'>
@@ -742,82 +757,82 @@
   <actions>
     <action caption='Filter 10 (generated)' name='[Action10_2FF084E4E10F490CB45F1326BE098274]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 2' type='sheet' worksheet='Age vs Salary ' />
+      <source dashboard='Insights DASHBOARD' type='sheet' worksheet='Age vs Salary ' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 2' />
+        <param name='target' value='Insights DASHBOARD' />
       </command>
     </action>
     <action caption='Filter 1 (generated)' name='[Action1_0471A751F5AC46E3AACE98EE07CF087D]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 2' type='sheet' worksheet='Departments' />
+      <source dashboard='Insights DASHBOARD' type='sheet' worksheet='Departments' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 2' />
+        <param name='target' value='Insights DASHBOARD' />
       </command>
     </action>
     <action caption='Filter 2 (generated)' name='[Action2_68CE5BFD8C00449692D0EB7A519A09B1]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 2' type='sheet' worksheet='Map States' />
+      <source dashboard='Insights DASHBOARD' type='sheet' worksheet='Map States' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 2' />
+        <param name='target' value='Insights DASHBOARD' />
       </command>
     </action>
     <action caption='Filter 3 (generated)' name='[Action3_2AB4ECF851BB4FDD97622906A3BF9E8C]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 2' type='sheet' worksheet='Location' />
+      <source dashboard='Insights DASHBOARD' type='sheet' worksheet='Location' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 2' />
+        <param name='target' value='Insights DASHBOARD' />
       </command>
     </action>
     <action caption='Filter 4 (generated)' name='[Action4_97A49CEB1ACF40B580D14561E92E47F5]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 2' type='sheet' worksheet='Gender' />
+      <source dashboard='Insights DASHBOARD' type='sheet' worksheet='Gender' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 2' />
+        <param name='target' value='Insights DASHBOARD' />
       </command>
     </action>
     <action caption='Filter 5 (generated)' name='[Action5_98D48BC8C8F647CF8D5BCF3F986363B7]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 2' type='sheet' worksheet='Education Level' />
+      <source dashboard='Insights DASHBOARD' type='sheet' worksheet='Education Level' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 2' />
+        <param name='target' value='Insights DASHBOARD' />
       </command>
     </action>
     <action caption='Filter 6 (generated)' name='[Action6_941C509092A64D8983B732FAA77FE004]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 2' type='sheet' worksheet='Age Groups ' />
+      <source dashboard='Insights DASHBOARD' type='sheet' worksheet='Age Groups ' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 2' />
+        <param name='target' value='Insights DASHBOARD' />
       </command>
     </action>
     <action caption='Filter 7 (generated)' name='[Action7_BC935B49AB71462D9C9B5A9E26047102]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 2' type='sheet' worksheet='Age vs Education' />
+      <source dashboard='Insights DASHBOARD' type='sheet' worksheet='Age vs Education' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 2' />
+        <param name='target' value='Insights DASHBOARD' />
       </command>
     </action>
     <action caption='Filter 8 (generated)' name='[Action8_6C9B5E1336094042A6F2FD2A95A4EA8A]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 2' type='sheet' worksheet='Education vs Performance' />
+      <source dashboard='Insights DASHBOARD' type='sheet' worksheet='Education vs Performance' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 2' />
+        <param name='target' value='Insights DASHBOARD' />
       </command>
     </action>
     <action caption='Filter 9 (generated)' name='[Action9_28C8BE08FC874AF8B4D7DFF0F77FAAED]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 2' type='sheet' worksheet='Gender vs Education Level ' />
+      <source dashboard='Insights DASHBOARD' type='sheet' worksheet='Gender vs Education Level ' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 2' />
+        <param name='target' value='Insights DASHBOARD' />
       </command>
     </action>
   </actions>
@@ -1045,6 +1060,7 @@
               <table-calc ordering-type='Columns' />
             </column-instance>
             <column-instance column='[Hiredate]' derivation='Year' name='[yr:Hiredate:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Termdate]' derivation='Year' name='[yr:Termdate:ok]' pivot='key' type='ordinal' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]'>
             <groupfilter function='crossjoin' user:ui-action-filter='[Action9_28C8BE08FC874AF8B4D7DFF0F77FAAED]' user:ui-enumeration='all' user:ui-marker='enumerate'>
@@ -1057,6 +1073,14 @@
               <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
               <groupfilter function='level-members' level='[City]' />
               <groupfilter function='level-members' level='[State]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2_68CE5BFD8C00449692D0EB7A519A09B1]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
+              <groupfilter function='level-members' level='[City]' />
+              <groupfilter function='level-members' level='[State]' />
+              <groupfilter function='level-members' level='[yr:Termdate:ok]' />
             </groupfilter>
           </filter>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]'>
@@ -1082,6 +1106,7 @@
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State)]</column>
+            <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -1261,6 +1286,7 @@
               </table-calc>
             </column-instance>
             <column-instance column='[Hiredate]' derivation='Year' name='[yr:Hiredate:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Termdate]' derivation='Year' name='[yr:Termdate:ok]' pivot='key' type='ordinal' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]'>
             <groupfilter function='crossjoin' user:ui-action-filter='[Action9_28C8BE08FC874AF8B4D7DFF0F77FAAED]' user:ui-enumeration='all' user:ui-marker='enumerate'>
@@ -1273,6 +1299,14 @@
               <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
               <groupfilter function='level-members' level='[City]' />
               <groupfilter function='level-members' level='[State]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2_68CE5BFD8C00449692D0EB7A519A09B1]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
+              <groupfilter function='level-members' level='[City]' />
+              <groupfilter function='level-members' level='[State]' />
+              <groupfilter function='level-members' level='[yr:Termdate:ok]' />
             </groupfilter>
           </filter>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]'>
@@ -1306,6 +1340,7 @@
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State)]</column>
+            <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -1461,6 +1496,7 @@
             <column-instance column='[Gender]' derivation='None' name='[none:Gender:nk]' pivot='key' type='nominal' />
             <column-instance column='[Job Title]' derivation='None' name='[none:Job Title:nk]' pivot='key' type='nominal' />
             <column-instance column='[Hiredate]' derivation='Year' name='[yr:Hiredate:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Termdate]' derivation='Year' name='[yr:Termdate:ok]' pivot='key' type='ordinal' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]'>
             <groupfilter function='crossjoin' user:ui-action-filter='[Action9_28C8BE08FC874AF8B4D7DFF0F77FAAED]' user:ui-enumeration='all' user:ui-marker='enumerate'>
@@ -1473,6 +1509,14 @@
               <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
               <groupfilter function='level-members' level='[City]' />
               <groupfilter function='level-members' level='[State]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2_68CE5BFD8C00449692D0EB7A519A09B1]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
+              <groupfilter function='level-members' level='[City]' />
+              <groupfilter function='level-members' level='[State]' />
+              <groupfilter function='level-members' level='[yr:Termdate:ok]' />
             </groupfilter>
           </filter>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]'>
@@ -1489,6 +1533,7 @@
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State)]</column>
+            <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -1660,6 +1705,7 @@
             <column-instance column='[Gender]' derivation='None' name='[none:Gender:nk]' pivot='key' type='nominal' />
             <column-instance column='[Calculation_583708796772421634]' derivation='User' name='[usr:Calculation_583708796772421634:qk]' pivot='key' type='quantitative' />
             <column-instance column='[Hiredate]' derivation='Year' name='[yr:Hiredate:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Termdate]' derivation='Year' name='[yr:Termdate:ok]' pivot='key' type='ordinal' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[:Measure Names]'>
             <groupfilter function='level-members' level='[:Measure Names]' />
@@ -1677,6 +1723,14 @@
               <groupfilter function='level-members' level='[State]' />
             </groupfilter>
           </filter>
+          <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2_68CE5BFD8C00449692D0EB7A519A09B1]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
+              <groupfilter function='level-members' level='[City]' />
+              <groupfilter function='level-members' level='[State]' />
+              <groupfilter function='level-members' level='[yr:Termdate:ok]' />
+            </groupfilter>
+          </filter>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]'>
             <groupfilter function='crossjoin' user:ui-action-filter='[Action1_0471A751F5AC46E3AACE98EE07CF087D]' user:ui-enumeration='all' user:ui-marker='enumerate'>
               <groupfilter function='level-members' level='[Calculation_6519523476982894592]' />
@@ -1692,6 +1746,7 @@
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State)]</column>
+            <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -1783,6 +1838,7 @@
             <column-instance column='[Gender]' derivation='None' name='[none:Gender:nk]' pivot='key' type='nominal' />
             <column-instance column='[Calculation_583708796728922112]' derivation='User' name='[usr:Calculation_583708796728922112:qk]' pivot='key' type='quantitative' />
             <column-instance column='[Hiredate]' derivation='Year' name='[yr:Hiredate:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Termdate]' derivation='Year' name='[yr:Termdate:ok]' pivot='key' type='ordinal' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[:Measure Names]'>
             <groupfilter function='level-members' level='[:Measure Names]' />
@@ -1800,6 +1856,14 @@
               <groupfilter function='level-members' level='[State]' />
             </groupfilter>
           </filter>
+          <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2_68CE5BFD8C00449692D0EB7A519A09B1]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
+              <groupfilter function='level-members' level='[City]' />
+              <groupfilter function='level-members' level='[State]' />
+              <groupfilter function='level-members' level='[yr:Termdate:ok]' />
+            </groupfilter>
+          </filter>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]'>
             <groupfilter function='crossjoin' user:ui-action-filter='[Action1_0471A751F5AC46E3AACE98EE07CF087D]' user:ui-enumeration='all' user:ui-marker='enumerate'>
               <groupfilter function='level-members' level='[Calculation_6519523476982894592]' />
@@ -1815,6 +1879,7 @@
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State)]</column>
+            <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -1905,6 +1970,7 @@
             <column-instance column='[Gender]' derivation='None' name='[none:Gender:nk]' pivot='key' type='nominal' />
             <column-instance column='[Calculation_583708796729987073]' derivation='User' name='[usr:Calculation_583708796729987073:qk]' pivot='key' type='quantitative' />
             <column-instance column='[Hiredate]' derivation='Year' name='[yr:Hiredate:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Termdate]' derivation='Year' name='[yr:Termdate:ok]' pivot='key' type='ordinal' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[:Measure Names]'>
             <groupfilter function='level-members' level='[:Measure Names]' />
@@ -1922,6 +1988,14 @@
               <groupfilter function='level-members' level='[State]' />
             </groupfilter>
           </filter>
+          <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2_68CE5BFD8C00449692D0EB7A519A09B1]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
+              <groupfilter function='level-members' level='[City]' />
+              <groupfilter function='level-members' level='[State]' />
+              <groupfilter function='level-members' level='[yr:Termdate:ok]' />
+            </groupfilter>
+          </filter>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]'>
             <groupfilter function='crossjoin' user:ui-action-filter='[Action1_0471A751F5AC46E3AACE98EE07CF087D]' user:ui-enumeration='all' user:ui-marker='enumerate'>
               <groupfilter function='level-members' level='[Calculation_6519523476982894592]' />
@@ -1937,6 +2011,7 @@
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State)]</column>
+            <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -2055,7 +2130,7 @@
             <groupfilter function='level-members' level='[Calculation_583708796804218885]' user:ui-action-filter='[Action - States]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Tooltip (State)]'>
-            <groupfilter function='member' level='[State]' member='&quot;Michigan&quot;' user:ui-action-filter='[Action - Cities]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+            <groupfilter function='level-members' level='[State]' user:ui-action-filter='[Action - Cities]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
           <computed-sort column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[none:City:nk]' direction='DESC' using='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[usr:Calculation_583708796728922112:qk]' />
           <computed-sort column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[none:State:nk]' direction='DESC' using='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[usr:Calculation_583708796728922112:qk]' />
@@ -2220,6 +2295,7 @@
               <table-calc ordering-type='Columns' />
             </column-instance>
             <column-instance column='[Hiredate]' derivation='Year' name='[yr:Hiredate:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Termdate]' derivation='Year' name='[yr:Termdate:ok]' pivot='key' type='ordinal' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]'>
             <groupfilter function='crossjoin' user:ui-action-filter='[Action9_28C8BE08FC874AF8B4D7DFF0F77FAAED]' user:ui-enumeration='all' user:ui-marker='enumerate'>
@@ -2232,6 +2308,14 @@
               <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
               <groupfilter function='level-members' level='[City]' />
               <groupfilter function='level-members' level='[State]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2_68CE5BFD8C00449692D0EB7A519A09B1]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
+              <groupfilter function='level-members' level='[City]' />
+              <groupfilter function='level-members' level='[State]' />
+              <groupfilter function='level-members' level='[yr:Termdate:ok]' />
             </groupfilter>
           </filter>
           <manual-sort column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[none:Calculation_6519523476982894592:nk]' direction='ASC'>
@@ -2250,6 +2334,7 @@
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[yr:Hiredate:ok]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State)]</column>
+            <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -2830,6 +2915,7 @@
               <table-calc ordering-type='Rows' />
             </column-instance>
             <column-instance column='[Hiredate]' derivation='Year' name='[yr:Hiredate:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Termdate]' derivation='Year' name='[yr:Termdate:ok]' pivot='key' type='ordinal' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]'>
             <groupfilter function='crossjoin' user:ui-action-filter='[Action9_28C8BE08FC874AF8B4D7DFF0F77FAAED]' user:ui-enumeration='all' user:ui-marker='enumerate'>
@@ -2842,6 +2928,14 @@
               <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
               <groupfilter function='level-members' level='[City]' />
               <groupfilter function='level-members' level='[State]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2_68CE5BFD8C00449692D0EB7A519A09B1]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
+              <groupfilter function='level-members' level='[City]' />
+              <groupfilter function='level-members' level='[State]' />
+              <groupfilter function='level-members' level='[yr:Termdate:ok]' />
             </groupfilter>
           </filter>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]'>
@@ -2866,6 +2960,7 @@
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State)]</column>
+            <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -3029,6 +3124,7 @@
               <table-calc field='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Calculation1]' ordering-field='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Performance Rating]' ordering-type='Field' />
             </column-instance>
             <column-instance column='[Hiredate]' derivation='Year' name='[yr:Hiredate:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Termdate]' derivation='Year' name='[yr:Termdate:ok]' pivot='key' type='ordinal' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]'>
             <groupfilter function='crossjoin' user:ui-action-filter='[Action9_28C8BE08FC874AF8B4D7DFF0F77FAAED]' user:ui-enumeration='all' user:ui-marker='enumerate'>
@@ -3041,6 +3137,14 @@
               <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
               <groupfilter function='level-members' level='[City]' />
               <groupfilter function='level-members' level='[State]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2_68CE5BFD8C00449692D0EB7A519A09B1]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
+              <groupfilter function='level-members' level='[City]' />
+              <groupfilter function='level-members' level='[State]' />
+              <groupfilter function='level-members' level='[yr:Termdate:ok]' />
             </groupfilter>
           </filter>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]'>
@@ -3073,6 +3177,7 @@
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State)]</column>
+            <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -3242,6 +3347,7 @@
             <column-instance column='[Calculation_3358137274653126659]' derivation='User' name='[usr:Calculation_3358137274653126659:qk]' pivot='key' type='quantitative' />
             <column-instance column='[Calculation_583708796728922112]' derivation='User' name='[usr:Calculation_583708796728922112:qk]' pivot='key' type='quantitative' />
             <column-instance column='[Hiredate]' derivation='Year' name='[yr:Hiredate:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Termdate]' derivation='Year' name='[yr:Termdate:ok]' pivot='key' type='ordinal' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]'>
             <groupfilter function='crossjoin' user:ui-action-filter='[Action9_28C8BE08FC874AF8B4D7DFF0F77FAAED]' user:ui-enumeration='all' user:ui-marker='enumerate'>
@@ -3254,6 +3360,14 @@
               <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
               <groupfilter function='level-members' level='[City]' />
               <groupfilter function='level-members' level='[State]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2_68CE5BFD8C00449692D0EB7A519A09B1]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
+              <groupfilter function='level-members' level='[City]' />
+              <groupfilter function='level-members' level='[State]' />
+              <groupfilter function='level-members' level='[yr:Termdate:ok]' />
             </groupfilter>
           </filter>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]'>
@@ -3270,6 +3384,7 @@
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State)]</column>
+            <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -3498,12 +3613,21 @@
             <column-instance column='[Education Level]' derivation='None' name='[none:Education Level:nk]' pivot='key' type='nominal' />
             <column-instance column='[Gender]' derivation='None' name='[none:Gender:nk]' pivot='key' type='nominal' />
             <column-instance column='[Hiredate]' derivation='Year' name='[yr:Hiredate:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Termdate]' derivation='Year' name='[yr:Termdate:ok]' pivot='key' type='ordinal' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State)]'>
             <groupfilter function='crossjoin' user:ui-action-filter='[Action2_68CE5BFD8C00449692D0EB7A519A09B1]' user:ui-enumeration='all' user:ui-marker='enumerate'>
               <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
               <groupfilter function='level-members' level='[City]' />
               <groupfilter function='level-members' level='[State]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2_68CE5BFD8C00449692D0EB7A519A09B1]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
+              <groupfilter function='level-members' level='[City]' />
+              <groupfilter function='level-members' level='[State]' />
+              <groupfilter function='level-members' level='[yr:Termdate:ok]' />
             </groupfilter>
           </filter>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]'>
@@ -3527,6 +3651,7 @@
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[yr:Hiredate:ok]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State)]</column>
+            <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -3770,6 +3895,7 @@
             </column-instance>
             <column-instance column='[Calculation_583708796728922112]' derivation='User' name='[usr:Calculation_583708796728922112:qk]' pivot='key' type='quantitative' />
             <column-instance column='[Hiredate]' derivation='Year' name='[yr:Hiredate:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Termdate]' derivation='Year' name='[yr:Termdate:ok]' pivot='key' type='ordinal' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]'>
             <groupfilter function='crossjoin' user:ui-action-filter='[Action9_28C8BE08FC874AF8B4D7DFF0F77FAAED]' user:ui-enumeration='all' user:ui-marker='enumerate'>
@@ -3782,6 +3908,14 @@
               <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
               <groupfilter function='level-members' level='[City]' />
               <groupfilter function='level-members' level='[State]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2_68CE5BFD8C00449692D0EB7A519A09B1]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
+              <groupfilter function='level-members' level='[City]' />
+              <groupfilter function='level-members' level='[State]' />
+              <groupfilter function='level-members' level='[yr:Termdate:ok]' />
             </groupfilter>
           </filter>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]'>
@@ -3798,6 +3932,7 @@
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State)]</column>
+            <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -4014,9 +4149,9 @@
             <column-instance column='[Hiredate]' derivation='Year' name='[yr:Hiredate:ok]' pivot='key' type='ordinal' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Tooltip (Status,Department)]'>
-            <groupfilter function='crossjoin' user:ui-action-filter='[Action - Job Titles]' user:ui-enumeration='all' user:ui-marker='enumerate'>
-              <groupfilter function='level-members' level='[Calculation_6519523476982894592]' />
-              <groupfilter function='level-members' level='[Department]' />
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action - Job Titles]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[Calculation_6519523476982894592]' member='&quot;Hired&quot;' />
+              <groupfilter function='member' level='[Department]' member='&quot;IT&quot;' />
             </groupfilter>
           </filter>
           <computed-sort column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[none:Job Title:nk]' direction='DESC' using='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[usr:Calculation_583708796728922112:qk]' />
@@ -4171,6 +4306,7 @@
             </column-instance>
             <column-instance column='[Calculation_583708796728922112]' derivation='User' name='[usr:Calculation_583708796728922112:qk]' pivot='key' type='quantitative' />
             <column-instance column='[Hiredate]' derivation='Year' name='[yr:Hiredate:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Termdate]' derivation='Year' name='[yr:Termdate:ok]' pivot='key' type='ordinal' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]'>
             <groupfilter function='crossjoin' user:ui-action-filter='[Action9_28C8BE08FC874AF8B4D7DFF0F77FAAED]' user:ui-enumeration='all' user:ui-marker='enumerate'>
@@ -4183,6 +4319,14 @@
               <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
               <groupfilter function='level-members' level='[City]' />
               <groupfilter function='level-members' level='[State]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2_68CE5BFD8C00449692D0EB7A519A09B1]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
+              <groupfilter function='level-members' level='[City]' />
+              <groupfilter function='level-members' level='[State]' />
+              <groupfilter function='level-members' level='[yr:Termdate:ok]' />
             </groupfilter>
           </filter>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]'>
@@ -4205,6 +4349,7 @@
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State)]</column>
+            <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -4369,6 +4514,12 @@
               <groupfilter function='level-members' level='[Department]' />
             </groupfilter>
           </filter>
+          <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[yr:Termdate:ok]'>
+            <groupfilter function='except' user:ui-domain='relevant' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[yr:Termdate:ok]' />
+              <groupfilter function='member' level='[yr:Termdate:ok]' member='%null%' />
+            </groupfilter>
+          </filter>
           <slices>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[none:Calculation_6519523476982894592:nk]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[none:Calculation_583708796804218885:nk]</column>
@@ -4376,16 +4527,15 @@
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[yr:Hiredate:ok]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Education Level,Gender)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]</column>
+            <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[yr:Termdate:ok]</column>
           </slices>
           <aggregation value='true' />
         </view>
         <style>
           <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Longitude (generated)]' field-type='quantitative' max='-7067303.4166865721' min='-10374327.326401353' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
             <format attr='stroke-size' value='0' />
             <format attr='line-visibility' value='off' />
             <format attr='tick-color' value='#00000000' />
-            <encoding attr='space' class='0' field='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Latitude (generated)]' field-type='quantitative' max='5876819.1955713499' min='3767355.3907485185' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
           </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[usr:Calculation_583708796728922112:qk]' type='custom-interpolated'>
@@ -4838,6 +4988,14 @@
               <groupfilter function='level-members' level='[State]' />
             </groupfilter>
           </filter>
+          <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2_68CE5BFD8C00449692D0EB7A519A09B1]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_583708796804218885]' />
+              <groupfilter function='level-members' level='[City]' />
+              <groupfilter function='level-members' level='[State]' />
+              <groupfilter function='level-members' level='[yr:Termdate:ok]' />
+            </groupfilter>
+          </filter>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]'>
             <groupfilter function='crossjoin' user:ui-action-filter='[Action1_0471A751F5AC46E3AACE98EE07CF087D]' user:ui-enumeration='all' user:ui-marker='enumerate'>
               <groupfilter function='level-members' level='[Calculation_6519523476982894592]' />
@@ -4845,10 +5003,7 @@
             </groupfilter>
           </filter>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[yr:Termdate:ok]'>
-            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
-              <groupfilter function='member' level='[yr:Termdate:ok]' member='%null%' />
-              <groupfilter from='2015' function='range' level='[yr:Termdate:ok]' to='2024' />
-            </groupfilter>
+            <groupfilter function='level-members' level='[yr:Termdate:ok]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
           <slices>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[none:Calculation_6519523476982894592:nk]</column>
@@ -4859,6 +5014,7 @@
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Status,Department)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State)]</column>
             <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[yr:Termdate:ok]</column>
+            <column>[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Action (Location ,City,State,YEAR(Termdate))]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -5084,142 +5240,7 @@
     </worksheet>
   </worksheets>
   <dashboards>
-    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Dashboard 1'>
-      <style />
-      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
-      <zones>
-        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
-          <zone forceUpdate='true' h='98000' id='3' type-v2='text' w='98400' x='800' y='1000'>
-            <formatted-text>
-              <run fontalignment='1' fontsize='18'>Analysis</run>
-              <run fontalignment='1'>Æ&#10;</run>
-              <run bold='true' fontalignment='1' fontcolor='#000000' fontsize='16'>Summary View</run>
-              <run fontalignment='1'>Æ&#10;&#10;</run>
-              <run bold='true' fontalignment='1' fontcolor='#000000' fontsize='14'>Overview</run>
-              <run fontalignment='1'>Æ&#10;</run>
-              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Display the total no. of hired employees, active employees and terminated employees</run>
-              <run fontalignment='1'>Æ&#10;</run>
-              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Visualize the total no. of hired and terminated employees over the years </run>
-              <run fontalignment='1'>Æ&#10;</run>
-              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Present a breakdown of total employees by departments and job titles </run>
-              <run fontalignment='1'>Æ&#10;</run>
-              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Compare total employees between Headquarters (NYC is the headquarters) vs. other branches </run>
-              <run fontalignment='1'>Æ&#10;</run>
-              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Show the distribution of employees by city and state  </run>
-              <run fontalignment='1'>Æ&#10;&#10;&#10;</run>
-              <run bold='true' fontalignment='1' fontcolor='#000000' fontsize='14'>Demographics</run>
-              <run fontalignment='1'>Æ&#10;</run>
-              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- The Demographics section should offer insights into the composition of the workforce, including: </run>
-              <run fontalignment='1'>Æ&#10;</run>
-              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Present the gender ratio of the company </run>
-              <run fontalignment='1'>Æ&#10;</run>
-              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Visualize the distribution of employees across age groups and education levels </run>
-              <run fontalignment='1'>Æ&#10;</run>
-              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Show the total number of employees within each age group </run>
-              <run fontalignment='1'>Æ&#10;</run>
-              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Show the total number of employees within each education level </run>
-              <run fontalignment='1'>Æ&#10;</run>
-              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Present the correlation between employees&apos; educational backgrounds and their performance ratings </run>
-              <run fontalignment='1'>Æ&#10;&#10;</run>
-              <run bold='true' fontalignment='1' fontcolor='#000000' fontsize='14'>Income</run>
-              <run fontalignment='1' fontcolor='#000000' fontsize='14'>Æ </run>
-              <run fontalignment='1'>Æ&#10;</run>
-              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Compare salaries across different education levels for both genders to identify any discrepancies or patterns - since the genders are measures and I am comparing the measures </run>
-              <run fontalignment='1'>Æ&#10;</run>
-              <run fontalignment='1' fontcolor='#000000' fontsize='14'>-  Present how the age correlates with the salary for employees in each department - since both of them are measures, and not dimensions, the best chart would be a scatter plot</run>
-              <run fontalignment='1'>Æ&#10;&#10;&#10;</run>
-              <run bold='true' fontalignment='1' fontsize='15'>Random Notes </run>
-              <run fontalignment='1'>Æ&#10;</run>
-              <run bold='true' fontalignment='1' fontsize='15'>- Change the link to the first navigation in the toolbar </run>
-              <run fontalignment='1'>Æ&#10;</run>
-            </formatted-text>
-            <zone-style>
-              <format attr='border-color' value='#000000' />
-              <format attr='border-style' value='none' />
-              <format attr='border-width' value='0' />
-              <format attr='margin' value='4' />
-            </zone-style>
-          </zone>
-          <zone-style>
-            <format attr='border-color' value='#000000' />
-            <format attr='border-style' value='none' />
-            <format attr='border-width' value='0' />
-            <format attr='margin' value='8' />
-          </zone-style>
-        </zone>
-      </zones>
-      <devicelayouts>
-        <devicelayout auto-generated='true' name='Phone'>
-          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
-          <zones>
-            <zone h='100000' id='236' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='98000' id='235' param='vert' type-v2='layout-flow' w='98400' x='800' y='1000'>
-                <zone forceUpdate='true' h='98000' id='3' type-v2='text' w='98400' x='800' y='1000'>
-                  <formatted-text>
-                    <run fontalignment='1' fontsize='18'>Analysis</run>
-                    <run fontalignment='1'>Æ&#10;</run>
-                    <run bold='true' fontalignment='1' fontcolor='#000000' fontsize='16'>Summary View</run>
-                    <run fontalignment='1'>Æ&#10;&#10;</run>
-                    <run bold='true' fontalignment='1' fontcolor='#000000' fontsize='14'>Overview</run>
-                    <run fontalignment='1'>Æ&#10;</run>
-                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Display the total no. of hired employees, active employees and terminated employees</run>
-                    <run fontalignment='1'>Æ&#10;</run>
-                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Visualize the total no. of hired and terminated employees over the years </run>
-                    <run fontalignment='1'>Æ&#10;</run>
-                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Present a breakdown of total employees by departments and job titles </run>
-                    <run fontalignment='1'>Æ&#10;</run>
-                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Compare total employees between Headquarters (NYC is the headquarters) vs. other branches </run>
-                    <run fontalignment='1'>Æ&#10;</run>
-                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Show the distribution of employees by city and state  </run>
-                    <run fontalignment='1'>Æ&#10;&#10;&#10;</run>
-                    <run bold='true' fontalignment='1' fontcolor='#000000' fontsize='14'>Demographics</run>
-                    <run fontalignment='1'>Æ&#10;</run>
-                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- The Demographics section should offer insights into the composition of the workforce, including: </run>
-                    <run fontalignment='1'>Æ&#10;</run>
-                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Present the gender ratio of the company </run>
-                    <run fontalignment='1'>Æ&#10;</run>
-                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Visualize the distribution of employees across age groups and education levels </run>
-                    <run fontalignment='1'>Æ&#10;</run>
-                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Show the total number of employees within each age group </run>
-                    <run fontalignment='1'>Æ&#10;</run>
-                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Show the total number of employees within each education level </run>
-                    <run fontalignment='1'>Æ&#10;</run>
-                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Present the correlation between employees&apos; educational backgrounds and their performance ratings </run>
-                    <run fontalignment='1'>Æ&#10;&#10;</run>
-                    <run bold='true' fontalignment='1' fontcolor='#000000' fontsize='14'>Income</run>
-                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>Æ </run>
-                    <run fontalignment='1'>Æ&#10;</run>
-                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Compare salaries across different education levels for both genders to identify any discrepancies or patterns - since the genders are measures and I am comparing the measures </run>
-                    <run fontalignment='1'>Æ&#10;</run>
-                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>-  Present how the age correlates with the salary for employees in each department - since both of them are measures, and not dimensions, the best chart would be a scatter plot</run>
-                    <run fontalignment='1'>Æ&#10;&#10;&#10;</run>
-                    <run bold='true' fontalignment='1' fontsize='15'>Random Notes </run>
-                    <run fontalignment='1'>Æ&#10;</run>
-                    <run bold='true' fontalignment='1' fontsize='15'>- Change the link to the first navigation in the toolbar </run>
-                    <run fontalignment='1'>Æ&#10;</run>
-                  </formatted-text>
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                    <format attr='padding' value='0' />
-                  </zone-style>
-                </zone>
-              </zone>
-              <zone-style>
-                <format attr='border-color' value='#000000' />
-                <format attr='border-style' value='none' />
-                <format attr='border-width' value='0' />
-                <format attr='margin' value='8' />
-              </zone-style>
-            </zone>
-          </zones>
-        </devicelayout>
-      </devicelayouts>
-      <simple-id uuid='{0BB7A796-BC53-4490-AE3E-B1F79ED7EBF5}' />
-    </dashboard>
-    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Dashboard 2'>
+    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Insights DASHBOARD'>
       <style>
         <style-rule element='dash-text'>
           <format attr='wrap' id='dash-text_228' value='off' />
@@ -5500,10 +5521,10 @@
           </zone>
           <zone fixed-size='1300' friendly-name='Header &amp; Charts ' h='100000' id='22' is-fixed='true' param='vert' type-v2='layout-flow' w='92143' x='7857' y='0'>
             <zone fixed-size='65' friendly-name='Header' h='8125' id='27' is-fixed='true' param='horz' type-v2='layout-flow' w='89285' x='9286' y='2500'>
-              <zone forceUpdate='true' h='8125' id='28' type-v2='text' w='47928' x='9286' y='2500'>
+              <zone forceUpdate='true' h='8125' id='28' type-v2='text' w='47356' x='9286' y='2500'>
                 <formatted-text>
                   <run bold='true' fontcolor='#e6e6e6' fontsize='20'>Human Resources Dashboard</run>
-                  <run fontcolor='#e6e6e6' fontsize='20'> | Overview</run>
+                  <run fontcolor='#e6e6e6' fontsize='20'> | Insights</run>
                 </formatted-text>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
@@ -5512,7 +5533,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='8125' id='29' type-v2='empty' w='41357' x='57214' y='2500'>
+              <zone h='8125' id='29' type-v2='empty' w='41928' x='56642' y='2500'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -5704,7 +5725,7 @@
                   </zone-style>
                 </zone>
                 <zone h='18620' id='93' name='Departments' show-title='false' w='27642' x='9786' y='46750'>
-                  <layout-cache cell-count-h='7' minwidth='260' type-h='cell' type-w='scalable' />
+                  <layout-cache minwidth='260' type-h='cell' type-w='scalable' />
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -5750,7 +5771,7 @@
                 </zone>
                 <zone friendly-name='Location Charts' h='27505' id='100' param='horz' type-v2='layout-flow' w='27642' x='9786' y='69120'>
                   <zone fixed-size='301' h='27505' id='102' is-fixed='true' name='Map States' show-title='false' w='22071' x='9786' y='69120'>
-                    <layout-cache minheight='220' minwidth='200' type-h='scalable' type-w='scalable' />
+                    <layout-cache minheight='220' minwidth='2000' type-h='scalable' type-w='scalable' />
                     <zone-style>
                       <format attr='border-color' value='#000000' />
                       <format attr='border-style' value='none' />
@@ -5862,7 +5883,7 @@
                       </zone>
                       <zone h='19310' id='113' param='horz' type-v2='layout-flow' w='25071' x='53070' y='30752'>
                         <zone fixed-size='247' h='19310' id='114' is-fixed='true' name='Age vs Education' show-title='false' w='18214' x='53070' y='30752'>
-                          <layout-cache type-h='cell' type-w='cell' />
+                          <layout-cache cell-count-h='5' non-cell-size-h='20' type-h='cell' type-w='cell' />
                           <zone-style>
                             <format attr='border-color' value='#000000' />
                             <format attr='border-style' value='none' />
@@ -5871,7 +5892,7 @@
                           </zone-style>
                         </zone>
                         <zone h='19310' id='112' name='Age Groups ' show-title='false' w='6857' x='71284' y='30752'>
-                          <layout-cache minwidth='100' type-h='cell' type-w='scalable' />
+                          <layout-cache cell-count-h='5' minwidth='100' type-h='cell' type-w='scalable' />
                           <zone-style>
                             <format attr='border-color' value='#000000' />
                             <format attr='border-style' value='none' />
@@ -6231,7 +6252,7 @@
                 <zone forceUpdate='true' h='8125' id='28' type-v2='text' w='47928' x='9286' y='2500'>
                   <formatted-text>
                     <run bold='true' fontcolor='#e6e6e6' fontsize='20'>Human Resources Dashboard</run>
-                    <run fontcolor='#e6e6e6' fontsize='20'> | Overview</run>
+                    <run fontcolor='#e6e6e6' fontsize='20'> | Insights</run>
                   </formatted-text>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
@@ -6793,7 +6814,7 @@
       </devicelayouts>
       <simple-id uuid='{64443451-479B-4F54-BBC4-1BB9867EFAF0}' />
     </dashboard>
-    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='HR Details'>
+    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Overview DASHBOARD'>
       <style>
         <style-rule element='dash-text'>
           <format attr='wrap' id='dash-text_228' value='off' />
@@ -8205,6 +8226,141 @@
       </devicelayouts>
       <simple-id uuid='{84BF94F7-FB13-476B-87E4-A106100ABCE8}' />
     </dashboard>
+    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Points of Analysis'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone forceUpdate='true' h='98000' id='3' type-v2='text' w='98400' x='800' y='1000'>
+            <formatted-text>
+              <run fontalignment='1' fontsize='18'>Analysis</run>
+              <run fontalignment='1'>Æ&#10;</run>
+              <run bold='true' fontalignment='1' fontcolor='#000000' fontsize='16'>Summary View</run>
+              <run fontalignment='1'>Æ&#10;&#10;</run>
+              <run bold='true' fontalignment='1' fontcolor='#000000' fontsize='14'>Overview</run>
+              <run fontalignment='1'>Æ&#10;</run>
+              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Display the total no. of hired employees, active employees and terminated employees</run>
+              <run fontalignment='1'>Æ&#10;</run>
+              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Visualize the total no. of hired and terminated employees over the years </run>
+              <run fontalignment='1'>Æ&#10;</run>
+              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Present a breakdown of total employees by departments and job titles </run>
+              <run fontalignment='1'>Æ&#10;</run>
+              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Compare total employees between Headquarters (NYC is the headquarters) vs. other branches </run>
+              <run fontalignment='1'>Æ&#10;</run>
+              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Show the distribution of employees by city and state  </run>
+              <run fontalignment='1'>Æ&#10;&#10;&#10;</run>
+              <run bold='true' fontalignment='1' fontcolor='#000000' fontsize='14'>Demographics</run>
+              <run fontalignment='1'>Æ&#10;</run>
+              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- The Demographics section should offer insights into the composition of the workforce, including: </run>
+              <run fontalignment='1'>Æ&#10;</run>
+              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Present the gender ratio of the company </run>
+              <run fontalignment='1'>Æ&#10;</run>
+              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Visualize the distribution of employees across age groups and education levels </run>
+              <run fontalignment='1'>Æ&#10;</run>
+              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Show the total number of employees within each age group </run>
+              <run fontalignment='1'>Æ&#10;</run>
+              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Show the total number of employees within each education level </run>
+              <run fontalignment='1'>Æ&#10;</run>
+              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Present the correlation between employees&apos; educational backgrounds and their performance ratings </run>
+              <run fontalignment='1'>Æ&#10;&#10;</run>
+              <run bold='true' fontalignment='1' fontcolor='#000000' fontsize='14'>Income</run>
+              <run fontalignment='1' fontcolor='#000000' fontsize='14'>Æ </run>
+              <run fontalignment='1'>Æ&#10;</run>
+              <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Compare salaries across different education levels for both genders to identify any discrepancies or patterns - since the genders are measures and I am comparing the measures </run>
+              <run fontalignment='1'>Æ&#10;</run>
+              <run fontalignment='1' fontcolor='#000000' fontsize='14'>-  Present how the age correlates with the salary for employees in each department - since both of them are measures, and not dimensions, the best chart would be a scatter plot</run>
+              <run fontalignment='1'>Æ&#10;&#10;&#10;</run>
+              <run bold='true' fontalignment='1' fontsize='15'>Random Notes </run>
+              <run fontalignment='1'>Æ&#10;</run>
+              <run bold='true' fontalignment='1' fontsize='15'>- Change the link to the first navigation in the toolbar </run>
+              <run fontalignment='1'>Æ&#10;</run>
+            </formatted-text>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='236' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98000' id='235' param='vert' type-v2='layout-flow' w='98400' x='800' y='1000'>
+                <zone forceUpdate='true' h='98000' id='3' type-v2='text' w='98400' x='800' y='1000'>
+                  <formatted-text>
+                    <run fontalignment='1' fontsize='18'>Analysis</run>
+                    <run fontalignment='1'>Æ&#10;</run>
+                    <run bold='true' fontalignment='1' fontcolor='#000000' fontsize='16'>Summary View</run>
+                    <run fontalignment='1'>Æ&#10;&#10;</run>
+                    <run bold='true' fontalignment='1' fontcolor='#000000' fontsize='14'>Overview</run>
+                    <run fontalignment='1'>Æ&#10;</run>
+                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Display the total no. of hired employees, active employees and terminated employees</run>
+                    <run fontalignment='1'>Æ&#10;</run>
+                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Visualize the total no. of hired and terminated employees over the years </run>
+                    <run fontalignment='1'>Æ&#10;</run>
+                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Present a breakdown of total employees by departments and job titles </run>
+                    <run fontalignment='1'>Æ&#10;</run>
+                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Compare total employees between Headquarters (NYC is the headquarters) vs. other branches </run>
+                    <run fontalignment='1'>Æ&#10;</run>
+                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Show the distribution of employees by city and state  </run>
+                    <run fontalignment='1'>Æ&#10;&#10;&#10;</run>
+                    <run bold='true' fontalignment='1' fontcolor='#000000' fontsize='14'>Demographics</run>
+                    <run fontalignment='1'>Æ&#10;</run>
+                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- The Demographics section should offer insights into the composition of the workforce, including: </run>
+                    <run fontalignment='1'>Æ&#10;</run>
+                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Present the gender ratio of the company </run>
+                    <run fontalignment='1'>Æ&#10;</run>
+                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Visualize the distribution of employees across age groups and education levels </run>
+                    <run fontalignment='1'>Æ&#10;</run>
+                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Show the total number of employees within each age group </run>
+                    <run fontalignment='1'>Æ&#10;</run>
+                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Show the total number of employees within each education level </run>
+                    <run fontalignment='1'>Æ&#10;</run>
+                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Present the correlation between employees&apos; educational backgrounds and their performance ratings </run>
+                    <run fontalignment='1'>Æ&#10;&#10;</run>
+                    <run bold='true' fontalignment='1' fontcolor='#000000' fontsize='14'>Income</run>
+                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>Æ </run>
+                    <run fontalignment='1'>Æ&#10;</run>
+                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>- Compare salaries across different education levels for both genders to identify any discrepancies or patterns - since the genders are measures and I am comparing the measures </run>
+                    <run fontalignment='1'>Æ&#10;</run>
+                    <run fontalignment='1' fontcolor='#000000' fontsize='14'>-  Present how the age correlates with the salary for employees in each department - since both of them are measures, and not dimensions, the best chart would be a scatter plot</run>
+                    <run fontalignment='1'>Æ&#10;&#10;&#10;</run>
+                    <run bold='true' fontalignment='1' fontsize='15'>Random Notes </run>
+                    <run fontalignment='1'>Æ&#10;</run>
+                    <run bold='true' fontalignment='1' fontsize='15'>- Change the link to the first navigation in the toolbar </run>
+                    <run fontalignment='1'>Æ&#10;</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{0BB7A796-BC53-4490-AE3E-B1F79ED7EBF5}' />
+    </dashboard>
   </dashboards>
   <windows source-height='30'>
     <window class='worksheet' name='test'>
@@ -8234,6 +8390,26 @@
         </edge>
       </cards>
       <simple-id uuid='{EC3AA3E7-5202-4E9F-9C89-E811EE5545F3}' />
+    </window>
+    <window class='worksheet' name='Detailed'>
+      <cards>
+        <edge name='left'>
+          <strip size='100'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{D4DF7E05-A118-457B-ACCC-2D86AC78DA28}' />
     </window>
     <window class='worksheet' name='Ban Hired'>
       <cards>
@@ -8453,7 +8629,7 @@
       </cards>
       <simple-id uuid='{B50F9B85-E159-4709-AE42-C5FE0BBE04A5}' />
     </window>
-    <window class='worksheet' maximized='true' name='Location'>
+    <window class='worksheet' name='Location'>
       <cards>
         <edge name='left'>
           <strip size='300'>
@@ -8675,32 +8851,7 @@
       </viewpoint>
       <simple-id uuid='{8083726B-8994-49F0-A0D0-94938C299CC6}' />
     </window>
-    <window class='worksheet' name='Detailed'>
-      <cards>
-        <edge name='left'>
-          <strip size='100'>
-            <card type='pages' />
-            <card type='filters' />
-            <card type='marks' />
-          </strip>
-        </edge>
-        <edge name='top'>
-          <strip size='2147483647'>
-            <card type='columns' />
-          </strip>
-          <strip size='2147483647'>
-            <card type='rows' />
-          </strip>
-        </edge>
-      </cards>
-      <simple-id uuid='{D4DF7E05-A118-457B-ACCC-2D86AC78DA28}' />
-    </window>
-    <window class='dashboard' name='Dashboard 1'>
-      <viewpoints />
-      <active id='3' />
-      <simple-id uuid='{36C35009-997C-4A97-9CBF-2D71B4573023}' />
-    </window>
-    <window class='dashboard' name='Dashboard 2'>
+    <window class='dashboard' maximized='true' name='Insights DASHBOARD'>
       <viewpoints>
         <viewpoint name='Age Groups '>
           <zoom type='entire-view' />
@@ -8748,15 +8899,20 @@
           <zoom type='entire-view' />
         </viewpoint>
       </viewpoints>
-      <active id='238' />
+      <active id='93' />
       <simple-id uuid='{5D633F43-185A-42EB-BB76-BAB5A03AA7AF}' />
     </window>
-    <window class='dashboard' name='HR Details'>
+    <window class='dashboard' name='Overview DASHBOARD'>
       <viewpoints>
         <viewpoint name='Detailed' />
       </viewpoints>
       <active id='409' />
       <simple-id uuid='{8FF248EF-8BE8-43E1-A2A0-350A863A3738}' />
+    </window>
+    <window class='dashboard' name='Points of Analysis'>
+      <viewpoints />
+      <active id='3' />
+      <simple-id uuid='{36C35009-997C-4A97-9CBF-2D71B4573023}' />
     </window>
   </windows>
   <external>
