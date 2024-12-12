@@ -37,12 +37,17 @@ Demographics:
 
 - **Gender Ratio**: 54% male, 46% female, with slight male dominance across departments.
 
-![Gender Ratio]
-<p align="center">
-  <img src="images/employee_gender.png" alt="Overview" width="30%">
-  <img src="images/employee_men.png" alt="Insights" width="30%">
-  <img src="images/employee_women.png" alt="Demographics" width="30%">
-</p>
+<div style="display: flex; align-items: flex-start;">
+  <div style="flex: 1; padding-right: 10px;">
+    <img src="images/employee_gender.png" alt="Employee Gender" width="100%">
+  </div>
+
+  <div style="flex: 1; display: flex; flex-direction: column;">
+    <img src="images/employee_men.png" alt="Employee Men" style="margin-bottom: 10px; width: 100%;">
+    <img src="images/employee_women.png" alt="Employee Women" style="width: 100%;">
+  </div>
+</div>
+
 
 
 - **Age Distribution**: Majority of employees are in the 25-34 age range, indicating a younger workforce.
