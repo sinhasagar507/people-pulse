@@ -48,12 +48,26 @@ Demographics:
   </div>
 </div>
 
-- **Age Distribution**: Majority of employees are in the 25-34 age range, indicating a younger workforce.
-- **Education Levels**: Bachelor's degrees dominate at 60%, correlating with consistent performance advantages. Higher degrees (PhDs and Masters) demonstrate better performance levels, with PhDs rated "Excellent."
 
 <p align="center">
   <img src="images/education_age_performance.png" alt="Regional Breakdown" width="800">
 </p>
+
+- **Age Distribution**: Majority of employees are in the 25-34 age range, indicating a younger workforce.
+- Majority of employees are in the 25-34 age range, indicating a younger workforce.
+- **Education Levels**: Bachelor's degrees dominate at 60%, correlating with consistent performance advantages. Higher degrees (PhDs and Masters) demonstrate better performance levels, with PhDs rated "Excellent."
+
+### Income 
+
+![Role Income](images/regional_breakdown_1.png)
+- IT roles command the highest median salaries, whereas HR roles get the least median salaries.
+
+<p align="center">
+  <img src="images/education_gender_men.png" alt="Overview Dashboard" width="45%">
+  <img src="images/education_gender_women.png" alt="Insights Dashboard" width="45%">
+</p>
+
+- Women with high school or Bachelor's degrees earn less than men, requiring equity adjustments, whereas women with Master's degrees or PhDs earn more than men at the same level, which also needs to be standardized.
 
 
 

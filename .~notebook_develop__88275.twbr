@@ -752,7 +752,10 @@
       <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[none:Gender:nk]'>
         <groupfilter function='except' user:ui-domain='database' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
           <groupfilter function='level-members' level='[none:Gender:nk]' />
-          <groupfilter function='empty-level' member='[none:Gender:nk]' />
+          <groupfilter function='except'>
+            <groupfilter function='level-members' level='[none:Gender:nk]' />
+            <groupfilter function='member' level='[none:Gender:nk]' member='%null%' />
+          </groupfilter>
         </groupfilter>
       </filter>
       <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[yr:Hiredate:ok]'>
@@ -5970,7 +5973,7 @@
                         </zone-style>
                       </zone>
                       <zone h='27936' id='124' name='Gender vs Education Level ' show-title='false' w='29000' x='40214' y='64062'>
-                        <layout-cache minwidth='192' type-h='cell' type-w='scalable' />
+                        <layout-cache cell-count-h='4' minwidth='192' type-h='cell' type-w='scalable' />
                         <zone-style>
                           <format attr='border-color' value='#000000' />
                           <format attr='border-style' value='none' />
