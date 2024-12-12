@@ -31,8 +31,21 @@ Demographics:
 ![Departmental Breakdown](images/departmental_breakdown.png)
 
 - **Regional Breakdown**: The state of New York has the largest number of active employees, with 70% of the workforce based at the headquarters in NYC.
-<img src="images/regional_breakdown.png" alt="Regional Breakdown" style="transform: rotate(90deg);">
+![Regional Breakdown](images/regional_breakdown_1.png)
 
+### Demographics
+
+- **Gender Ratio**: 54% male, 46% female, with slight male dominance across departments.
+
+![Gender Ratio]
+<p align="center">
+  <img src="images/employee_gender.png.png" alt="Overview" width="30%">
+  <img src="images/employee_men.png.png" alt="Insights" width="30%">
+  <img src="images/employee_women.png.png" alt="Demographics" width="30%">
+</p>
+
+
+- **Age Distribution**: Majority of employees are in the 25-34 age range, indicating a younger workforce.
 
 
 

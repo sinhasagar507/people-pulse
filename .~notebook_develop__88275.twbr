@@ -4128,9 +4128,9 @@
             <column-instance column='[Hiredate]' derivation='Year' name='[yr:Hiredate:ok]' pivot='key' type='ordinal' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Tooltip (Status,Department)]'>
-            <groupfilter function='crossjoin' user:ui-action-filter='[Action - Job Titles]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
-              <groupfilter function='member' level='[Calculation_6519523476982894592]' member='&quot;Terminated&quot;' />
-              <groupfilter function='member' level='[Department]' member='&quot;Sales&quot;' />
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action - Job Titles]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_6519523476982894592]' />
+              <groupfilter function='level-members' level='[Department]' />
             </groupfilter>
           </filter>
           <computed-sort column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[none:Job Title:nk]' direction='DESC' using='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[usr:Calculation_583708796728922112:qk]' />
@@ -5811,7 +5811,7 @@
                         </zone-style>
                       </zone>
                       <zone h='31812' id='109' name='Gender' show-title='false' w='12071' x='40214' y='18250'>
-                        <layout-cache cell-count-h='2' minwidth='120' type-h='cell' type-w='scalable' />
+                        <layout-cache cell-count-h='1' minwidth='120' type-h='cell' type-w='scalable' />
                         <zone-style>
                           <format attr='border-color' value='#000000' />
                           <format attr='border-style' value='none' />
@@ -5970,7 +5970,7 @@
                         </zone-style>
                       </zone>
                       <zone h='27936' id='124' name='Gender vs Education Level ' show-title='false' w='29000' x='40214' y='64062'>
-                        <layout-cache cell-count-h='4' minwidth='192' type-h='cell' type-w='scalable' />
+                        <layout-cache minwidth='192' type-h='cell' type-w='scalable' />
                         <zone-style>
                           <format attr='border-color' value='#000000' />
                           <format attr='border-style' value='none' />
@@ -8878,7 +8878,7 @@
           <zoom type='entire-view' />
         </viewpoint>
       </viewpoints>
-      <active id='237' />
+      <active id='236' />
       <simple-id uuid='{5D633F43-185A-42EB-BB76-BAB5A03AA7AF}' />
     </window>
     <window class='dashboard' name='Overview DASHBOARD'>
