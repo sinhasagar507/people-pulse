@@ -52,7 +52,7 @@ Demographics:
 - **Education Levels**: Bachelor's degrees dominate at 60%, correlating with consistent performance advantages. Higher degrees (PhDs and Masters) demonstrate better performance levels, with PhDs rated "Excellent."
 
 <p align="center">
-  <img src="images/education_age_performance.png" alt="Regional Breakdown" width="600">
+  <img src="images/education_age_performance.png" alt="Regional Breakdown" width="800">
 </p>
 
 
