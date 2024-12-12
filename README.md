@@ -22,63 +22,31 @@ Demographics:
 
 ## Insights Deep-Dive
 
-**Dashboard 1: Overview**
-Key metrics visualized in the overview dashboard:
-- **Active Employees**: 7,984 active employees with clear hiring and termination trends (e.g., spikes in terminations during specific years).
-- **Departmental Breakdown**: Operations department has the largest headcount as well as the largest number of terminated employees, followed by sales and customer service.
-- **Regional Breakdown**: The state of New York has the largest number of active employees since 2018, with all the workers based in the organization's headquarters in New York City (NYC). Overall, through all the years, 70% of the total employees work in the headquarters.
-- **Demographics**: Majority of employees are in the 25-34 age range, indicating a younger workforce.
-Slight male dominance across departments.
-**Dashboard 2: Insights**
-- **Education Levels**: Higher the degree, better the level of performance. Those with PHD demonstrate an excellent level of performance whereas those with bachelors and masters demonstrated just good performance.
-- **Gender and Salary**: Gender pay disparity is most pronounced in Sales and Finance roles. Female employees earn a median salary approximately 10% lower than their male counterparts.
-- **Performance Ratings**: Most employees fall into "Good" or "Satisfactory" categories, but improvement is needed for 15% in "Needs Improvement."
-- **Retention Patterns**: Employees with longer tenure are more likely to be in higher-rated performance categories.
+### Overview
+
+- **Active Employees**: 7,984 active employees with clear hiring and termination trends, including spikes in terminations during specific years.
+![Active Employees](images/active_employees.png)
+
+- **Departmental Breakdown**: Operations has the largest headcount and the highest terminations, followed by Sales and Customer Service.
+- **Department Trends**: Operations and Sales exhibit the highest employee turnover, while IT and Finance maintain higher retention.
+- **Regional Breakdown**: The state of New York has the largest number of active employees, with 70% of the workforce based at the headquarters in NYC.
 
 
-## Key Features
 
-- **KPIs (Key Performance Indicators):**
-  - **Total Hired**: Displays the total number of employees hired.
-  - **Total Active**: Represents the total number of currently active employees.
-  - **Total Terminated**: Shows the total number of employees who have left the organization.
 
-- **Line Plots:**
-  - **Hired By Year**: Visualizes the trend in hiring over the years.
-  - **Terminated By Year**: Tracks the number of terminations across different years.
+## Recommendations
 
-- **Bar Plots:**
-  - **Hires by Department**: Shows the number of employees hired in each department.
-  - **Hires by Location**: Displays hiring distribution across different locations.
+- **Address Pay Gaps**: Initiate salary equity adjustments, particularly for women who have high-school or a bachelors degree as the highest education level as compared to women with the same highest level. On the other hand, women holding masters degree or a PHD earn higher than men at the same level, which also needs to be addressed. 
+- **Retention Strategies**: Focus on mentoring and growth opportunities in high-turnover departments (e.g., Operations and Sales).
+- **Upskilling Programs**: Develop targeted training for employees in the "Needs Improvement" category to improve productivity.
+- **Hiring Optimizations**: Refine recruitment pipelines to target demographics (e.g., young graduates) with high potential for retention and performance.
+- **Gender Discrepancies**: Address gender discrepancies to ensure women are adequately represented in the workforce.
 
-- **Geo Plot:**
-  - **Hired by Location**: A geographical representation of where employees were hired.
+## Clarifying Questions, Assumptions, and Caveats
 
-- **Pie Plot:**
-  - **Hired by Gender**: A breakdown of hiring based on gender distribution.
+**Questions**
 
-- **Additional Visualizations**: Several other charts are used to explore additional dimensions of the dataset, such as employee tenure, termination reasons, and performance metrics.
 
-## Objective
-
-The objective of this dashboard is to provide an intuitive interface for analyzing key HR metrics, enabling organizations to:
-
-- Understand trends in hiring and terminations.
-- Evaluate department and location-specific workforce data.
-- Gain insights into gender distribution within the workforce.
-- Make data-driven decisions to optimize HR processes and strategy.
-
-## Future Enhancements
-
-- Upcoming
-
-## How to Use
-
-1. Import the Human Resources dataset into Tableau.
-2. Visualize key KPIs and trends across the pre-built charts.
-3. Use filters and interactivity to explore specific data points and insights.
-
-## Dataset
 
 The dataset contains comprehensive employee records, including details such as:
 
