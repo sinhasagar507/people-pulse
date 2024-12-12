@@ -27,9 +27,12 @@ Demographics:
 - **Active Employees**: 7,984 active employees with clear hiring and termination trends, including spikes in terminations during specific years.
 ![Active Employees](images/active_employees.png)
 
-- **Departmental Breakdown**: Operations has the largest headcount and the highest terminations, followed by Sales and Customer Service.
-- **Department Trends**: Operations and Sales exhibit the highest employee turnover, while IT and Finance maintain higher retention.
+- **Departmental Breakdown**: Operations has the largest headcount and the highest terminations, followed by Sales and Customer Service. Moreover, Operations and Sales exhibit the highest employee turnover, while IT and Finance maintain higher retention.
+![Departmental Breakdown](images/departmental_breakdown.png)
+
 - **Regional Breakdown**: The state of New York has the largest number of active employees, with 70% of the workforce based at the headquarters in NYC.
+<img src="images/regional_breakdown.png" alt="Regional Breakdown" style="transform: rotate(90deg);">
+
 
 
 
