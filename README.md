@@ -48,9 +48,10 @@ Demographics:
   </div>
 </div>
 
-
-
 - **Age Distribution**: Majority of employees are in the 25-34 age range, indicating a younger workforce.
+- **Education Levels**: Bachelor's degrees dominate at 60%, correlating with consistent performance advantages. Higher degrees (PhDs and Masters) demonstrate better performance levels, with PhDs rated "Excellent."
+
+![Age & Education](images/education_age_performance.png){width="500px"}
 
 
 
