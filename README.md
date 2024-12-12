@@ -63,8 +63,8 @@ Demographics:
 - IT roles command the highest median salaries, whereas HR roles get the least median salaries.
 
 <p align="center">
-  <img src="images/education_gender_men.png" alt="Overview Dashboard" width="45%">
-  <img src="images/education_gender_women.png" alt="Insights Dashboard" width="45%">
+  <img src="images/education_gender_men.png" alt="Overview Dashboard" width="45%" height="300">
+  <img src="images/education_gender_women.png" alt="Insights Dashboard" width="45%" height="300">
 </p>
 
 - Women with high school or Bachelor's degrees earn less than men, requiring equity adjustments, whereas women with Master's degrees or PhDs earn more than men at the same level, which also needs to be standardized.
