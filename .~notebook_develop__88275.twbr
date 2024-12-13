@@ -752,10 +752,7 @@
       <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[none:Gender:nk]'>
         <groupfilter function='except' user:ui-domain='database' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
           <groupfilter function='level-members' level='[none:Gender:nk]' />
-          <groupfilter function='except'>
-            <groupfilter function='level-members' level='[none:Gender:nk]' />
-            <groupfilter function='member' level='[none:Gender:nk]' member='%null%' />
-          </groupfilter>
+          <groupfilter function='empty-level' member='[none:Gender:nk]' />
         </groupfilter>
       </filter>
       <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[yr:Hiredate:ok]'>
@@ -2534,7 +2531,7 @@
             <groupfilter function='level-members' level='[none:City:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[none:Department:nk]'>
-            <groupfilter function='level-members' level='[none:Department:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+            <groupfilter function='member' level='[none:Department:nk]' member='&quot;Operations&quot;' user:ui-domain='cascading' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
           </filter>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[none:Education Level:nk]'>
             <groupfilter function='level-members' level='[none:Education Level:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
@@ -2552,8 +2549,8 @@
             <groupfilter function='member' level='[none:State:nk]' member='&quot;West Virginia&quot;' user:ui-domain='cascading' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
           </filter>
           <filter class='quantitative' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[sum:Calculation_5908722719064481793:qk]' included-values='in-range-or-null'>
-            <min>2</min>
-            <max>7</max>
+            <min>0</min>
+            <max>9</max>
           </filter>
           <filter class='quantitative' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[sum:Salary:qk]' included-values='in-range'>
             <min>51835</min>
@@ -4131,9 +4128,9 @@
             <column-instance column='[Hiredate]' derivation='Year' name='[yr:Hiredate:ok]' pivot='key' type='ordinal' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[Tooltip (Status,Department)]'>
-            <groupfilter function='crossjoin' user:ui-action-filter='[Action - Job Titles]' user:ui-enumeration='all' user:ui-marker='enumerate'>
-              <groupfilter function='level-members' level='[Calculation_6519523476982894592]' />
-              <groupfilter function='level-members' level='[Department]' />
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action - Job Titles]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[Calculation_6519523476982894592]' member='&quot;Terminated&quot;' />
+              <groupfilter function='member' level='[Department]' member='&quot;Operations&quot;' />
             </groupfilter>
           </filter>
           <computed-sort column='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[none:Job Title:nk]' direction='DESC' using='[federated.0g0xunp1lkxysq0zuvh6e0o5k6zt].[usr:Calculation_583708796728922112:qk]' />
@@ -5707,7 +5704,7 @@
                   </zone-style>
                 </zone>
                 <zone h='18620' id='93' name='Departments' show-title='false' w='27642' x='9786' y='46750'>
-                  <layout-cache cell-count-h='7' minwidth='260' type-h='cell' type-w='scalable' />
+                  <layout-cache minwidth='260' type-h='cell' type-w='scalable' />
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -5814,7 +5811,7 @@
                         </zone-style>
                       </zone>
                       <zone h='31812' id='109' name='Gender' show-title='false' w='12071' x='40214' y='18250'>
-                        <layout-cache cell-count-h='1' minwidth='120' type-h='cell' type-w='scalable' />
+                        <layout-cache cell-count-h='2' minwidth='120' type-h='cell' type-w='scalable' />
                         <zone-style>
                           <format attr='border-color' value='#000000' />
                           <format attr='border-style' value='none' />
@@ -5853,7 +5850,7 @@
                         </zone-style>
                       </zone>
                       <zone h='12502' id='115' name='Education Level' show-title='false' w='25071' x='53070' y='18250'>
-                        <layout-cache cell-count-w='4' minheight='100' type-h='scalable' type-w='cell' />
+                        <layout-cache cell-count-w='1' minheight='100' type-h='scalable' type-w='cell' />
                         <zone-style>
                           <format attr='border-color' value='#000000' />
                           <format attr='border-style' value='none' />
@@ -5916,7 +5913,7 @@
                         </zone-style>
                       </zone>
                       <zone h='31812' id='119' name='Education vs Performance' show-title='false' w='18000' x='78569' y='18250'>
-                        <layout-cache cell-count-h='4' cell-count-w='4' non-cell-size-h='20' non-cell-size-w='80' type-h='cell' type-w='cell' />
+                        <layout-cache cell-count-h='4' cell-count-w='1' non-cell-size-h='20' non-cell-size-w='120' type-h='cell' type-w='cell' />
                         <zone-style>
                           <format attr='border-color' value='#000000' />
                           <format attr='border-style' value='none' />
@@ -7607,7 +7604,7 @@
                 </zone>
               </zone>
               <zone h='59750' id='302' name='Detailed' show-title='false' w='89143' x='9357' y='37625'>
-                <layout-cache fixed-size-h='1073' has-max-size-w='true' maxwidth='1214' minwidth='1214' type-h='fixed' type-w='scalable' />
+                <layout-cache fixed-size-h='1110' has-max-size-w='true' maxwidth='1214' minwidth='1214' type-h='fixed' type-w='scalable' />
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -8888,7 +8885,7 @@
       <viewpoints>
         <viewpoint name='Detailed' />
       </viewpoints>
-      <active id='314' />
+      <active id='403' />
       <simple-id uuid='{8FF248EF-8BE8-43E1-A2A0-350A863A3738}' />
     </window>
     <window class='dashboard' name='Points of Analysis'>
