@@ -156,8 +156,8 @@ cython_debug/
 
 # Files
 .DS_Store
-.~notebook_develop__88275.twbr
-notebook_1.twb
+*.twbr
+*.twb
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
