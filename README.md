@@ -81,6 +81,24 @@ Demographics:
 - **Hiring Optimizations**: Refine recruitment pipelines to target demographics (e.g., young graduates) with high potential for retention and performance.
 - **Gender Discrepancies**: Address gender discrepancies to ensure women are adequately represented in the workforce.
 
+## Tableau Workbook Instructions
+
+To view the Tableau dashboards for this project:
+
+1. **Download the Tableau Workbook**:
+   - Locate the `hr_analysis.twbx` file in the repository.
+
+2. **Open the File in Tableau Desktop**:
+   - Ensure you have **Tableau Desktop** installed on your computer.
+   - Open the `.twbx` file directly using Tableau Desktop.
+
+3. **Explore the Dashboards**:
+   - The workbook contains the following dashboards:
+     - **Overview Dashboard**: Provides high-level statistics.
+     - **Insights Dashboard**: Offers deeper analysis of key metrics.
+
+No additional configuration or data source setup is required as the `.twbx` file includes all necessary data.
+
 ## Technologies Used
 
 - **Tableau**: For building visualizations and interactive dashboards.
