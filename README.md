@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Organizations continuously strive to enhance their workforce management strategies. With the rise of data-driven decision-making, HR analytics dashboards have become a critical tool for analyzing employee demographics, performance, and trends. This project focuses on creating an interactive dashboard that provides actionable insights into human resource data, enabling better workforce planning and management.
+Organizations continuously strive to enhance their workforce management strategies. With the rise of data-driven decision-making, HR analytics has become a critical tool for analyzing employee demographics, performance, and trends. The project focuses on creating an interactive dashboard that provides actionable insights into human resource data, enabling better workforce planning and management.
 
 ## Executive Summary
 
